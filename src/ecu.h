@@ -3,6 +3,16 @@
 
 #define PARAM_NAME_LEN 32
 
+typedef struct {
+    int voltage;  // Tension batterie (ex: 12V)
+    int temperature; // Température batterie
+} Battery;
+
+typedef struct {
+    int current_gear;
+    int clutch_pressure;
+} Transmission;
+
 // Définition de la structure Engine
 typedef struct {
     int speed;
@@ -13,8 +23,9 @@ typedef struct {
 // Définition de la structure Car
 typedef struct {
     Engine engine;
+    Transmission transmission;
+    Battery battery;
     int fuel;
-    int gear;
 } Car;
 
 // Fonctions disponibles
