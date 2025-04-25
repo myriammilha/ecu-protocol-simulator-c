@@ -11,18 +11,11 @@ Ce document décrit les évolutions prévues pour enrichir le simulateur et pass
 - [x] Gestion simple de paramètres (tableau fixe)
 - [x] Test automatique via script bash
 - [x] Projet structuré et documenté
-
+- [x] Gestion dynamique de la mémoire
+- [x] Pointeurs de fonction pour le protocole
 ---
 
 ## 📈 Objectifs futurs
-
-### 🟦 1. Gestion dynamique de la mémoire
-- Utiliser `malloc`/`free` pour stocker dynamiquement les paramètres
-- Permettre l'ajout/suppression de paramètres au runtime
-
-### 🟩 2. Pointeurs de fonction pour le protocole
-- Associer chaque commande (`READ`, `WRITE`, `SHOW`) à une fonction
-- Remplacer les `strcmp` par des appels dynamiques
 
 ### 🟨 3. Structures imbriquées
 - Créer des structures hiérarchiques (`Engine`, `Transmission`, etc.)
