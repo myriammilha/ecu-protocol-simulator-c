@@ -3,78 +3,60 @@
 #include <stdlib.h>
 #include "ecu.h"
 
-static ECU_Param *params = NULL;
-static int param_count = 0;
+// Objet global représentant l'ECU
+static Car car;
 
-// Fonction utilitaire : recherche d’un paramètre par nom
-static int find_param_index(const char *name) {
-    for (int i = 0; i < param_count; i++) {
-        if (strcmp(params[i].name, name) == 0) {
-            return i;
-        }
-    }
-    return -1;
-}
-
-// Initialisation avec des paramètres par défaut
 void ecu_init() {
-    params = malloc(sizeof(ECU_Param) * MAX_PARAMS);
-    if (params == NULL) {
-        printf("Erreur d'allocation mémoire.\n");
-        exit(1);
-    }
-
-    // Paramètre 1 : speed = Vitesse du véhicule (en km/h)
-    strcpy(params[0].name, "speed");
-    params[0].value = 45;
-
-    // Paramètre 2 : rpm = Régime moteur (en tours/minute)
-    strcpy(params[1].name, "rpm");
-    params[1].value = 3000;
-
-    // Paramètre 3 : temp = Température moteur ou liquide de refroidissement
-    strcpy(params[2].name, "temp");
-    params[2].value = 90;
-
-    // Paramètre 4 : fuel = Niveau de carburant (en %)
-    strcpy(params[3].name, "fuel");
-    params[3].value = 60;
-
-    // Paramètre 5 : gear = Rapport engagé / vitesse de la boîte de vitesses
-    strcpy(params[4].name, "gear");
-    params[4].value = 3;
-
-    param_count = 5;
+    car.engine.speed = 45;
+    car.engine.rpm = 3000;
+    car.engine.temp = 90;
+    car.fuel = 60;
+    car.gear = 3;
 }
 
-// Lecture d’un paramètre
 int ecu_read(const char *param_name, int *value_out) {
-    int index = find_param_index(param_name);
-    if (index == -1) {
+    if (strcmp(param_name, "speed") == 0) {
+        *value_out = car.engine.speed;
+    } else if (strcmp(param_name, "rpm") == 0) {
+        *value_out = car.engine.rpm;
+    } else if (strcmp(param_name, "temp") == 0) {
+        *value_out = car.engine.temp;
+    } else if (strcmp(param_name, "fuel") == 0) {
+        *value_out = car.fuel;
+    } else if (strcmp(param_name, "gear") == 0) {
+        *value_out = car.gear;
+    } else {
         return -1;
     }
-    *value_out = params[index].value;
     return 0;
 }
 
-// Écriture d’un paramètre
 int ecu_write(const char *param_name, int new_value) {
-    int index = find_param_index(param_name);
-    if (index == -1) {
+    if (strcmp(param_name, "speed") == 0) {
+        car.engine.speed = new_value;
+    } else if (strcmp(param_name, "rpm") == 0) {
+        car.engine.rpm = new_value;
+    } else if (strcmp(param_name, "temp") == 0) {
+        car.engine.temp = new_value;
+    } else if (strcmp(param_name, "fuel") == 0) {
+        car.fuel = new_value;
+    } else if (strcmp(param_name, "gear") == 0) {
+        car.gear = new_value;
+    } else {
         return -1;
     }
-    params[index].value = new_value;
     return 0;
 }
 
 void ecu_show_all() {
     printf("Liste des paramètres ECU :\n");
-    for (int i = 0; i < param_count; i++) {
-        printf("  %s = %d\n", params[i].name, params[i].value);
-    }
+    printf("  speed = %d\n", car.engine.speed);
+    printf("  rpm = %d\n", car.engine.rpm);
+    printf("  temp = %d\n", car.engine.temp);
+    printf("  fuel = %d\n", car.fuel);
+    printf("  gear = %d\n", car.gear);
 }
 
 void ecu_free() {
-    free(params);
-    params = NULL;
+    // Rien à libérer pour l'instant, car car est statique
 }
