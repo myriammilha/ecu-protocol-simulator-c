@@ -13,7 +13,7 @@ Il permet de **lire et écrire des paramètres** via des commandes textuelles si
 Simuler une ECU contenant quelques paramètres (`speed`, `rpm`,`temp`, `fuel`, `gear`) 
 et communiquer avec elle via un protocole texte basique :
 
-```
+```bash
 READ speed
 WRITE speed 100
 SHOW
@@ -23,7 +23,7 @@ SHOW
 
 ## 📦 Structure du projet
 
-```
+```bash
 ecu_comm_simulator/
 │
 ├── src/                # Fichiers source C
