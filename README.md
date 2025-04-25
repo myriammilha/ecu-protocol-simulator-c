@@ -12,13 +12,12 @@ Il permet de **lire et écrire des paramètres** via des commandes textuelles si
 
 Simuler une ECU contenant quelques paramètres (`speed`, `rpm`,`temp`, `fuel`, `gear`) 
 et communiquer avec elle via un protocole texte basique :
-
+```
 ```bash
 READ speed
 WRITE speed 100
 SHOW
 ```
-
 ---
 
 ## 📦 Structure du projet
@@ -71,12 +70,12 @@ speed mis à jour à 100
 
 > READ speed
 speed = 100
-```
 
 > SHOW
 Liste des paramètres ECU :
   speed = 100
   rpm = 3000
+```
 
 Tapez `EXIT` pour quitter.
 
