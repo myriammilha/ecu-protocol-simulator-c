@@ -34,5 +34,6 @@ int ecu_read(const char *param_name, int *value_out);
 int ecu_write(const char *param_name, int new_value);
 void ecu_show_all();
 void ecu_free(); // Toujours là, même si plus vraiment utile pour l'instant
+void ecu_increase_temp();
 
 #endif // ECU_H

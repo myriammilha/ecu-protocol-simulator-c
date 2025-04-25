@@ -81,3 +81,10 @@ void ecu_show_all() {
 void ecu_free() {
     // Rien à libérer pour l'instant, car Car est statique
 }
+
+void ecu_increase_temp() {
+    car.engine.temp += 1;
+    if (car.engine.temp > 120) {
+        car.engine.temp = 90;
+    }
+}
