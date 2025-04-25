@@ -1,42 +1,26 @@
 #!/bin/bash
 
-# Chemin vers l'exécutable
+# Exécutable à tester
 EXEC=./main
 
-# Vérifie que le binaire existe
+# Vérifie que l'exécutable existe
 if [ ! -f "$EXEC" ]; then
-    echo "Erreur : exécutable '$EXEC' introuvable. Compilez le projet d'abord."
+    echo "Erreur : exécutable '$EXEC' introuvable. Compilez d'abord."
     exit 1
 fi
 
-# Fichier temporaire contenant les commandes de test
-TEST_CMDS=$(mktemp)
-
-cat << EOF > "$TEST_CMDS"
-READ speed
-WRITE speed 100
-READ speed
-READ rpm
-WRITE rpm 4000
-READ fuel
-READ gear
-WRITE fuel 100
-READ temp
-WRITE temp 90
-WRITE unknown_param 123
-READ unknown_param
-SHOW
+# Commandes de test adaptées aux opcodes
+cat << EOF | $EXEC
+1 speed
+2 speed 100
+1 speed
+1 rpm
+2 rpm 4000
+1 rpm
+1 temp
+1 fuel
+2 current_gear 4
+1 current_gear
+3
 EXIT
 EOF
-
-echo "=== Lancement du test automatique ==="
-echo "Commandes utilisées :"
-cat "$TEST_CMDS"
-echo "========================"
-echo ""
-
-# Exécute le programme avec les commandes du script en entrée
-"$EXEC" < "$TEST_CMDS"
-
-# Nettoyage
-rm "$TEST_CMDS"
