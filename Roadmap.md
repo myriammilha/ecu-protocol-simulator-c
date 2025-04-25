@@ -13,13 +13,11 @@ Ce document décrit les évolutions prévues pour enrichir le simulateur et pass
 - [x] Projet structuré et documenté
 - [x] Gestion dynamique de la mémoire
 - [x] Pointeurs de fonction pour le protocole
+- [x] Structures imbriquées
+
 ---
 
 ## 📈 Objectifs futurs
-
-### 🟨 3. Structures imbriquées
-- Créer des structures hiérarchiques (`Engine`, `Transmission`, etc.)
-- Améliorer la représentation logique des paramètres de l'ECU
 
 ### 🟧 4. Protocole binaire
 - Supporter la communication en format binaire (0x01 READ, 0x02 WRITE)
