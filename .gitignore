@@ -1,0 +1,12 @@
+# Fichiers compilés
+main
+*.o
+
+# Répertoire de build
+build/
+
+# Fichiers temporaires système
+*.log
+*.tmp
+*.swp
+.DS_Store
