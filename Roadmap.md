@@ -16,14 +16,7 @@ Ce document décrit les évolutions prévues pour enrichir le simulateur et pass
 - [x] Structures imbriquées
 - [x] Protocole binaire
 - [x] Communication réseau avec Sockets
-
----
-
-## 📈 Objectifs futurs
-
-### 🟪 6. Gestion multithread
-- Ajouter un thread pour simuler les évolutions naturelles de l'ECU (ex: température moteur qui monte)
-- Synchronisation entre threads pour la lecture/écriture des paramètres
+- [x] Gestion multithread
 
 ---
 
