@@ -14,18 +14,12 @@ Ce document décrit les évolutions prévues pour enrichir le simulateur et pass
 - [x] Gestion dynamique de la mémoire
 - [x] Pointeurs de fonction pour le protocole
 - [x] Structures imbriquées
+- [x] Protocole binaire
+- [x] Communication réseau avec Sockets
 
 ---
 
 ## 📈 Objectifs futurs
-
-### 🟧 4. Protocole binaire
-- Supporter la communication en format binaire (0x01 READ, 0x02 WRITE)
-- Conversion entre binaire et structure interne
-
-### 🟥 5. Communication réseau avec Sockets
-- Transformer l'ECU en serveur TCP
-- Permettre à des clients externes de se connecter et envoyer des commandes
 
 ### 🟪 6. Gestion multithread
 - Ajouter un thread pour simuler les évolutions naturelles de l'ECU (ex: température moteur qui monte)
