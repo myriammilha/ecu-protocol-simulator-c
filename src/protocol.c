@@ -7,45 +7,47 @@
 typedef void (*CommandHandler)(const char *args);
 
 typedef struct {
-    const char *name;
+    int opcode;
     CommandHandler handler;
 } Command;
 
+// Déclarations des fonctions handler
 void handle_read(const char *args);
 void handle_write(const char *args);
 void handle_show(const char *args);
 
+// Table des commandes avec codes numériques
 Command commands[] = {
-    { "READ", handle_read },
-    { "WRITE", handle_write },
-    { "SHOW", handle_show },
+    { 1, handle_read },
+    { 2, handle_write },
+    { 3, handle_show },
 };
 
 #define NUM_COMMANDS (sizeof(commands) / sizeof(Command))
 
 void protocol_process_command(const char *cmd) {
-    char command_name[16];
-    char args[128];
+    int opcode;
+    char args[128] = {0};
 
-    if (sscanf(cmd, "%15s %127[^\n]", command_name, args) < 1) {
+    if (sscanf(cmd, "%d %127[^\n]", &opcode, args) < 1) {
         printf("Commande vide ou invalide.\n");
         return;
     }
 
     for (int i = 0; i < NUM_COMMANDS; i++) {
-        if (strcmp(command_name, commands[i].name) == 0) {
+        if (opcode == commands[i].opcode) {
             commands[i].handler(args);
             return;
         }
     }
 
-    printf("Commande invalide. Syntaxe attendue :\n");
-    printf("  READ <param>\n");
-    printf("  WRITE <param> <valeur>\n");
-    printf("  SHOW\n");
+    printf("Opcode inconnu. Opérations valides :\n");
+    printf("  1 <param>            : READ param\n");
+    printf("  2 <param> <value>    : WRITE param value\n");
+    printf("  3                   : SHOW all parameters\n");
 }
 
-// === Command Handlers ===
+// === Fonctions handlers ===
 
 void handle_read(const char *args) {
     int value;
@@ -67,7 +69,7 @@ void handle_write(const char *args) {
             printf("Erreur : paramètre inconnu '%s'\n", param_name);
         }
     } else {
-        printf("Syntaxe invalide. Utilisation : WRITE <param> <valeur>\n");
+        printf("Syntaxe invalide. Utilisation : 2 <param> <valeur>\n");
     }
 }
 
