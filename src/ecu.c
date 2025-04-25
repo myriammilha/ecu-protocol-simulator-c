@@ -26,7 +26,19 @@ void ecu_init() {
     strcpy(params[1].name, "rpm");
     params[1].value = 3000;
 
-    param_count = 2;
+    // Paramètre 3 : temp = Température moteur ou liquide de refroidissement
+    strcpy(params[2].name, "temp");
+    params[2].value = 90;
+
+    // Paramètre 4 : fuel = Niveau de carburant (en %)
+    strcpy(params[3].name, "fuel");
+    params[3].value = 60;
+
+    // Paramètre 5 : gear = Rapport engagé / vitesse de la boîte de vitesses
+    strcpy(params[4].name, "gear");
+    params[4].value = 3;
+
+    param_count = 5;
 }
 
 // Lecture d’un paramètre
@@ -49,7 +61,6 @@ int ecu_write(const char *param_name, int new_value) {
     return 0;
 }
 
-// Affichage des paramètres
 void ecu_show_all() {
     printf("Liste des paramètres ECU :\n");
     for (int i = 0; i < param_count; i++) {
