@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "ecu.h"
 
-// Paramètres internes simulés (statiques)
-static ECU_Param params[MAX_PARAMS];
+static ECU_Param *params = NULL;
 static int param_count = 0;
 
 // Fonction utilitaire : recherche d’un paramètre par nom
@@ -18,6 +18,12 @@ static int find_param_index(const char *name) {
 
 // Initialisation avec des paramètres par défaut
 void ecu_init() {
+    params = malloc(sizeof(ECU_Param) * MAX_PARAMS);
+    if (params == NULL) {
+        printf("Erreur d'allocation mémoire.\n");
+        exit(1);
+    }
+
     // Paramètre 1 : speed = Vitesse du véhicule (en km/h)
     strcpy(params[0].name, "speed");
     params[0].value = 45;
@@ -68,3 +74,7 @@ void ecu_show_all() {
     }
 }
 
+void ecu_free() {
+    free(params);
+    params = NULL;
+}

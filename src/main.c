@@ -31,6 +31,6 @@ int main() {
 
         protocol_process_command(cmd_buffer);
     }
-
+    ecu_free();
     return 0;
 }

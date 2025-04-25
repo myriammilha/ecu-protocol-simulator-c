@@ -13,5 +13,6 @@ void ecu_init();
 int ecu_read(const char *param_name, int *value_out);
 int ecu_write(const char *param_name, int new_value);
 void ecu_show_all();
+void ecu_free();
 
 #endif // ECU_H
