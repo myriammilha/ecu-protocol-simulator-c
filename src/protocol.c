@@ -34,7 +34,7 @@ void protocol_process_command(const char *cmd) {
         return;
     }
 
-    for (int i = 0; i < NUM_COMMANDS; i++) {
+    for (size_t i = 0; i < NUM_COMMANDS; i++) {
         if (opcode == commands[i].opcode) {
             commands[i].handler(args);
             return;
